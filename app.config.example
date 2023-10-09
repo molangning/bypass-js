@@ -1,0 +1,5 @@
+# hidden prefix for our app to hide under
+hidden_prefix: ffafkq
+
+# port to serve under
+port: 8080

@@ -1,0 +1,14 @@
+# remove playground test place
+playground.php
+
+# remove .setup_done flag
+.setup_done
+
+# remove test.sh
+test.sh
+
+# remove app.config
+app.config
+
+# ignore bypass dir for now
+bypass/
