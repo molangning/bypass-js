@@ -49,6 +49,12 @@ function confirm() {
 
 }
 
+if [ ! -d ".git" ]; then
+  git remote add origin https://github.com/molangning/bypass-js.git
+  git checkout main
+  git pull
+fi
+
 if [ ! -f ".setup_done" ]; then
   if confirm "Do you want to use the development branch?" n; then
     git pull
@@ -63,3 +69,6 @@ fi
 npm install express --save
 git pull
 node server.js
+
+
+  
