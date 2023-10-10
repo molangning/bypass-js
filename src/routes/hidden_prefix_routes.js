@@ -30,7 +30,6 @@ function routerWrapper(hiddenPrefix) {
     let realPath = req.path.replace(`/${hiddenPrefix}`, '');
     if (realPath === '') {
       realPath = '/';
-      return;
     }
     if (realPath === '/') {
       serveStatic(res,`${process.cwd()}/src/hidden-prefix/bypass.html`);
