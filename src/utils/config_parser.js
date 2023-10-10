@@ -6,7 +6,6 @@ function parseConfig() {
   if (!fs.existsSync('app.config')) {
     var randomPrefix = Math.random().toString(36).substring(2);
     var defaultConfig = `# hidden prefix for our app to hide under\nhidden_prefix: ${randomPrefix}\n\n# port to serve under\nport: 8080`;
-    console.log(defaultConfig);
     try {
       fs.writeFileSync("app.config", defaultConfig);
     } catch (err) {
@@ -42,7 +41,6 @@ function parseConfig() {
       throw new Error("Unknown option in config file: " + "line");
     }
   }
-  console.log(port);
   if (isNaN(port)) {
     throw new Error("Port must be a number");
   }
