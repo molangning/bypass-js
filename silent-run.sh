@@ -2,4 +2,4 @@
 
 npm install express --save
 git pull
-node index.js
+node server.js
