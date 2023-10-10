@@ -1,5 +1,6 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const compression = require('compression');
 
 // accounts for edge cases where user runs
 // file directly with both config and example config missing. 
@@ -10,17 +11,19 @@ const app = express()
 
 // AaAAaaaAaAaAaA
 
-configParser = require("./config_parser.js");
+configParser = require(`${process.cwd()}/src/utils/config_parser.js`);
 console.log(configParser.parseConfig)
 config = configParser.parseConfig();
 hiddenPrefix = config[0]
 port = config[1]
 
-routes = require("./routes.js");
-router = routes.routerWrapper(config[0]);
-app.use(router);
+app.use(compression());
+
+app.use(require(`${process.cwd()}/src/routes/routes.js`));
+
+app.use(require(`${process.cwd()}/src/routes/hidden_prefix_routes.js`).routerWrapper(config[0]));
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
-  console.log(`Bypass hosted on ${hiddenPrefix}`);
+  console.log(`Bypass hosted on /${hiddenPrefix}`);
 })
