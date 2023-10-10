@@ -49,11 +49,14 @@ function confirm() {
 
 }
 
-if [ ! -d ".git" ]; then
+git ls-remote -q > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
   git remote add origin https://github.com/molangning/bypass-js.git
   git checkout main
   git pull
 fi
+
 
 if [ ! -f ".setup_done" ]; then
   if confirm "Do you want to use the development branch?" n; then
