@@ -60,5 +60,6 @@ fi
 if [ ! -f "./logs/php/php-error.log" ]; then
   touch ./logs/php/php-error.log
 fi
+npm install express --save
 git pull
-php -S 0.0.0.0:8000 -t .
+node index.js
