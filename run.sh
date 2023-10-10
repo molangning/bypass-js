@@ -1,6 +1,4 @@
 #!/bin/bash
-# env variables
-export PHPRC=./php.ini 
 
 # functions
 
