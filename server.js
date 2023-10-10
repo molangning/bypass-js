@@ -12,7 +12,6 @@ const compression = require('compression');
 // AaAAaaaAaAaAaA
 
 configParser = require(`${process.cwd()}/src/utils/config_parser.js`);
-console.log(configParser.parseConfig)
 config = configParser.parseConfig();
 hiddenPrefix = config[0]
 port = config[1]
