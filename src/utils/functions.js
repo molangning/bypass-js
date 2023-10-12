@@ -1,70 +1,38 @@
-// We have two cookies
-// uuid and timezone
-// uuid format: uuid_random_chars
+const crypto = require('crypto');
+const moment = require('moment-timezone');
 
-
-
-
-function checkCookies(req, res, next){
-  // check if client sent cookie
-  var cookie = req.cookies.cookieName;
-  if (cookie === undefined) {
-    // no: set a new cookie
-    var randomNumber=Math.random().toString();
-    randomNumber=randomNumber.substring(2,randomNumber.length);
-     httpOnly: true });
-    console.log('cookie created successfully');
-  } else {
-    // yes, cookie was already present 
-    console.log('cookie exists', cookie);
-  } 
-  next(); // <-- important!
+function resetCookies(req, res) {
+  res.redirect(req.url);
+  res.send("reloading page...");
+  return;
 }
 
+function cookiesHandler(req, res) {
+  //check tz
+  //check uuid
+  //set uuid if not found and refresh
+  //send user back to main page if tz invalid or missing
 
-function set_uuid(){
-  const crypto = require('crypto');
-  return crypto.randomUUID()
+  let cookies = req.cookies;
+  tz = cookies.timezone;
+
+  if (typeof tz !== 'string' || moment.tz.zone(tz) === null) {
+    resetCookies(req, res);
+    return;
+  }
+
+  uuid_regex = new RegExp(/^uuid_[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i)
+
+  if (typeof cookies.uuid !== 'string' || !uuid_regex.test(cookies.uuid)) {
+    res.cookie('uuid', 'uuid_' + set_uuid());
+    resetCookies(req, res);
+    return;
+  }
+
 }
 
-// not done
-function parseCookie(cname) {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
+function set_uuid() {
+  return crypto.randomUUID();
 }
 
-// end js
-date_default_timezone_set('Asia/Singapore');
-
-  if (isset($_COOKIE["uuid"])){
-    $uuid=$_COOKIE["uuid"];
-
-    if (strlen($uuid) !== 37){
-      set_uuid();
-      
-    } else if (!str_starts_with($uuid, "uuid_")){
-      set_uuid();
-    }
-  } else {
-    set_uuid();
-  }
-
-  if (isset($_COOKIE["timezone"])){
-    $timezone=$_COOKIE["timezone"];
-    if (!in_array($timezone, timezone_identifiers_list(),true)) {
-      require "setcookies.php";
-    }
-  }
-
-?>
+module.exports = { cookiesHandler };

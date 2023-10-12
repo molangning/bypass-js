@@ -12,7 +12,7 @@
 
 <details open>
  <summary>Replit mirrors</summary>
-   <a href="WarmPapayawhipHypertalk.testaccount413.repl.co/bypass">Link 1 (updated 9/10/2023)</a><br>
+   <a href="https://warmpapayawhiphypertalk.testaccount413.repl.co/31xrmhece6h/">Link 1 (updated 12/10/2023)</a><br>
 </details>
 
 ### Private mirrors

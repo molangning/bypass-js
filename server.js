@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const compression = require('compression');
-var cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser')
 
 // accounts for edge cases where user runs
 // file directly with both config and example config missing. 

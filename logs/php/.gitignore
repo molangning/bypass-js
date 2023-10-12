@@ -1,4 +1,0 @@
-# remove logs from committed code
-*
-# except for gitignore
-!.gitignore
