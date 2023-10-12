@@ -1,20 +1,24 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const cookiesHandler = require(`${process.cwd()}/src/utils/functions.js`).cookiesHandler;
+const log = require(`${process.cwd()}/src/utils/logging.js`).log;
+
 const router = express.Router();
+
 
 function return404(res) {
   res.status(404).send("404");
   return;
 }
 
-function redirect(res,loc){
-  res.set('Cache-Control','max-age=0')
-  res.redirect(301,loc);
+function redirect(res, loc) {
+  res.set('Cache-Control', 'max-age=0')
+  res.redirect(301, loc);
+  res.send()
 }
 
-
-function serveStatic(res,path){
+function serveStatic(res, path) {
   // cache everything unless updated
   res.set('Cache-Control', 'public, no-cache')
   res.sendFile(path);
@@ -27,12 +31,18 @@ function routerWrapper(hiddenPrefix) {
   }
 
   router.get(RegExp(`^/${hiddenPrefix}(/|/.*|)$`), (req, res) => {
+
+    // console.log("I'm still runnin'")
+    // yeah yeah yeah!
+
     let realPath = req.path.replace(`/${hiddenPrefix}`, '');
+
     if (realPath === '') {
       realPath = '/';
     }
+
     if (realPath === '/') {
-      serveStatic(res,`${process.cwd()}/src/hidden-prefix/bypass.html`);
+      serveStatic(res, `${process.cwd()}/src/hidden-prefix/bypass.html`);
       return;
     }
 
@@ -41,27 +51,32 @@ function routerWrapper(hiddenPrefix) {
         return404(res);
         return
       }
-      redirect(res,req.query.url);
+
+      cookiesHandler(req, res);
+
+      if (!res.headersSent) {
+        redirect(res, req.query.url);
+        log(req.cookies.uuid, req.cookies.timezone, req.query.url, 'info');
+      }
       return;
-      
+
     }
 
     if (realPath.endsWith("/")) {
       realPath = realPath.slice(0, -1);
     }
-    
-    console.log(realPath);
+
     filePath = `${process.cwd()}/src/hidden-prefix${realPath}`
-    console.log(`accessing ${filePath}`);
+    // console.log(`accessing ${filePath}`);
     if (fs.existsSync(filePath)) {
-      serveStatic(res,filePath);
+      serveStatic(res, filePath);
       return;
     } else {
       console.log(`404 don't have ${filePath}`);
     }
 
-  return404(res);
-  return;
+    return404(res);
+    return;
 
   });
 
