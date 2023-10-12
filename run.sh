@@ -73,7 +73,7 @@ fi
 if [ ! -f "./logs/php/php-error.log" ]; then
   touch ./logs/php/php-error.log
 fi
-npm install express --save
+npm install compression cookie-parser node-fetch express moment-timezone --save
 git pull
 node server.js
 

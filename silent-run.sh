@@ -12,7 +12,6 @@ if [ $? -ne 0 ]; then
   git checkout -t origin/main
 fi
 
-
-npm install express --save
+npm install compression cookie-parser node-fetch express moment-timezone --save
 git pull
 node server.js

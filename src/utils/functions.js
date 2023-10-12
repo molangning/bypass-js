@@ -2,6 +2,9 @@
 // uuid and timezone
 // uuid format: uuid_random_chars
 
+
+
+
 function checkCookies(req, res, next){
   // check if client sent cookie
   var cookie = req.cookies.cookieName;
@@ -9,7 +12,7 @@ function checkCookies(req, res, next){
     // no: set a new cookie
     var randomNumber=Math.random().toString();
     randomNumber=randomNumber.substring(2,randomNumber.length);
-    res.cookie('cookieName',randomNumber, { maxAge: 900000, httpOnly: true });
+     httpOnly: true });
     console.log('cookie created successfully');
   } else {
     // yes, cookie was already present 
