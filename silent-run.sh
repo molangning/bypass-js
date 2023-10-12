@@ -12,6 +12,6 @@ if [ $? -ne 0 ]; then
   git checkout -t origin/main
 fi
 
-npm install compression cookie-parser node-fetch express moment-timezone --save
+npm install compression cookie-parser node-fetch express moment-timezone uuid --save
 git pull
 node server.js

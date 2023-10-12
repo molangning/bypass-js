@@ -16,6 +16,7 @@ function redirect(res, loc) {
   res.set('Cache-Control', 'max-age=0')
   res.redirect(301, loc);
   res.send()
+  return;
 }
 
 function serveStatic(res, path) {
@@ -35,6 +36,12 @@ function routerWrapper(hiddenPrefix) {
     // console.log("I'm still runnin'")
     // yeah yeah yeah!
 
+    if (!req.path.endsWith("/") && (Object.keys(req.query).length === 0 && req.query.constructor === Object
+    )) {
+      redirect(res, req.path + "/");
+      return;
+    }
+
     let realPath = req.path.replace(`/${hiddenPrefix}`, '');
 
     if (realPath === '') {
@@ -44,6 +51,9 @@ function routerWrapper(hiddenPrefix) {
     if (realPath === '/') {
       serveStatic(res, `${process.cwd()}/src/hidden-prefix/bypass.html`);
       return;
+    }
+    if (req.path.endsWith("/")) {
+      realPath = realPath.slice(0, -1);
     }
 
     if (realPath === '/bounce') {
@@ -60,10 +70,6 @@ function routerWrapper(hiddenPrefix) {
       }
       return;
 
-    }
-
-    if (realPath.endsWith("/")) {
-      realPath = realPath.slice(0, -1);
     }
 
     filePath = `${process.cwd()}/src/hidden-prefix${realPath}`

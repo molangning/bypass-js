@@ -1,4 +1,3 @@
-const moment = require('moment-timezone');
 
-console.log(moment(new Date()).tz('Asia/Singapore').format('h:mm:ss a'))
-
+console.log(`Here is a test v1 uuid: ${uuid.v1()}`);
+console.log(`Here is a test v4 uuid: ${uuid.v4()}`);
