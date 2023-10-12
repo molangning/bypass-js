@@ -1,9 +1,8 @@
-const crypto = require('crypto');
+const uuid = require('uuid');
 const moment = require('moment-timezone');
 
 function resetCookies(req, res) {
   res.redirect(req.url);
-  res.send("reloading page...");
   return;
 }
 
@@ -24,15 +23,12 @@ function cookiesHandler(req, res) {
   uuid_regex = new RegExp(/^uuid_[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i)
 
   if (typeof cookies.uuid !== 'string' || !uuid_regex.test(cookies.uuid)) {
-    res.cookie('uuid', 'uuid_' + set_uuid());
+    res.cookie('uuid', 'uuid_' + uuid.v4());
     resetCookies(req, res);
     return;
   }
-
 }
 
-function set_uuid() {
-  return crypto.randomUUID();
-}
+
 
 module.exports = { cookiesHandler };
