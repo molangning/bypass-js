@@ -1,12 +1,5 @@
 # Bypass project
 
-## todo
-1. Something something something
-2. do everything else
-3. ditto
-4. I'm tired of this
-
-
 ## Mirrors
 ### Public mirrors
 
