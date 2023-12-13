@@ -57,16 +57,19 @@ function routerWrapper(hiddenPrefix) {
     }
 
     if (realPath === '/bounce') {
-      if (!req.query.url) {
+      if (req.query.url) {
+        redirect_url = req.query.url;
+      } else if (req.query.si) {
+        redirect_url = atob(req.query.si);
+      } else {
         return404(res);
-        return
       }
 
       cookiesHandler(req, res);
 
       if (!res.headersSent) {
-        redirect(res, req.query.url);
-        log(req.cookies.uuid, req.cookies.timezone, req.query.url, 'info');
+        redirect(res, redirect_url);
+        log(req.cookies.uuid, req.cookies.timezone, redirect_url, 'info');
       }
       return;
 
