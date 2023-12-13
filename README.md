@@ -63,5 +63,3 @@ Please try all the mirrors first, then hosting on replit. If the issues still pe
 If you have found bugs in the code, please feel free to open a issue in the github repo.
 For suggestions, make sure you tag them as suggestions in github issues
 
-## TODO
-- [x] Hidden links to prevent automatic detection

@@ -10,3 +10,12 @@ channel = "stable-23_05"
 run = ["./silent-run.sh"]
 deploymentTarget = "cloudrun"
 ignorePorts = false
+
+[rules]
+
+[rules.formatter]
+
+[rules.formatter.fileExtensions]
+
+[rules.formatter.fileExtensions.".js"]
+id = "module:nodejs-18:v21-20231211-ac14ad7/languageServer:typescript-language-server"

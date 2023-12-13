@@ -12,7 +12,7 @@ function newTab() {
 
 function openUrl(link) {
   if (link.length > 0) {
-    window.open("bounce?url=" + encodeURIComponent(link), "_blank");
+    window.open("bounce?si=" + btoa(link), "_blank");
   }
 }
 
