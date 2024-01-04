@@ -60,7 +60,7 @@ function routerWrapper(hiddenPrefix) {
       if (req.query.url) {
         redirect_url = req.query.url;
       } else if (req.query.si) {
-        redirect_url = atob(req.query.si);
+        redirect_url = Buffer.from(req.query.si, "base64").toString();
       } else {
         return404(res);
       }

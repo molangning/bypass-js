@@ -6,9 +6,16 @@ https://discord.com/invite/wC92JBb834
 ## Mirrors
 ### Public mirrors
 
-<details open>
+Replit mirrors are all broken as of now due to replit migration to deployments.
+
+<details close>
  <summary>Replit mirrors</summary>
    <a href="https://warmpapayawhiphypertalk.testaccount413.repl.co/31xrmhece6h/">Link 1 (updated 12/10/2023)</a><br>
+</details>
+
+<details open>
+ <summary>Glitch mirrors</summary>
+   <a href="https://spectacular-silver-girl.glitch.me/mjyb1knu9p">Link 1 (updated 12/10/2023)</a><br>
 </details>
 
 ### Private mirrors
