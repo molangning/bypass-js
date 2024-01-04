@@ -1,28 +1,19 @@
-const express = require('express');
-const app = express();
-const compression = require('compression');
-const cookieParser = require('cookie-parser')
+// hack for glitch
 
-// accounts for edge cases where user runs
-// file directly with both config and example config missing. 
-// Idfk why would this happen because the setup should be done at run.sh
-// maybe headless setup?
+const { spawn } = require('node:child_process');
 
-// AaAAaaaAaAaAaA
-/// Some day this code will come and haunt me forever
+console.log("Running as glitch, checking for updates")
 
-configParser = require(`${process.cwd()}/src/utils/config_parser.js`);
-config = configParser.parseConfig();
-hiddenPrefix = config[0]
-port = config[1]
+var process = spawn("./silent-run.sh");
 
-app.use(compression());
-app.use(cookieParser());
-app.use(require(`${process.cwd()}/src/routes/routes.js`));
+process.stdout.on('data', (data) => {
+  console.log(`${data}`);
+});
 
-app.use(require(`${process.cwd()}/src/routes/hidden_prefix_routes.js`).routerWrapper(config[0]));
+process.stderr.on('data', (data) => {
+  console.error(`${data}`);
+});
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-  console.log(`Bypass hosted on /${hiddenPrefix}`);
-})
+process.on('close', (code) => {
+  console.log(`Script exited with code ${code}`);
+}); 
