@@ -15,7 +15,7 @@ Replit mirrors are all broken as of now due to replit migration to deployments.
 
 <details open>
  <summary>Glitch mirrors</summary>
-   <a href="https://spectacular-silver-girl.glitch.me/mjyb1knu9p">Link 1 (updated 01/04/2024)</a><br>
+   <a href="https://working-enormous-aardwolf.glitch.me/4k0ab91gk3n/">Link 1 (updated 01/04/2024)</a><br>
 </details>
 
 ### Private mirrors
