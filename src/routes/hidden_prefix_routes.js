@@ -75,6 +75,22 @@ function routerWrapper(hiddenPrefix) {
 
     }
 
+    if (realPath === '/permalink') {
+
+      if (req.query.si) {
+        redirect_url = Buffer.from(req.query.si, "base64").toString();
+      } else {
+        return404(res);
+      }
+
+      if (!res.headersSent) {
+        redirect(res, redirect_url);
+        log(req.cookies.uuid, req.cookies.timezone, redirect_url, 'info');
+      }
+      return;
+
+    }
+
     filePath = `${process.cwd()}/src/hidden-prefix${realPath}`
     // console.log(`accessing ${filePath}`);
     if (fs.existsSync(filePath)) {
