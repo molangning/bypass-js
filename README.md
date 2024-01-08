@@ -15,7 +15,8 @@ Replit mirrors are all broken as of now due to replit migration to deployments.
 
 <details open>
  <summary>Glitch mirrors</summary>
-   <a href="https://working-enormous-aardwolf.glitch.me/4k0ab91gk3n/">Link 1 (updated 01/04/2024)</a><br>
+   <a href="https://working-enormous-aardwolf.glitch.me/4k0ab91gk3n/">Link 1 (updated 04/01/2024)</a><br>
+   <a href="https://mini-kiwi-keeper.glitch.me/jewh7wle7e/">Link 2 (updated 09/01/2024)</a><br>
 </details>
 
 ### Private mirrors
