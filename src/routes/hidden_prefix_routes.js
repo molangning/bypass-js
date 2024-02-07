@@ -14,7 +14,7 @@ function return404(res) {
 
 function redirect(res, loc) {
   res.set('Cache-Control', 'max-age=0')
-  res.redirect(301, loc);
+  res.redirect(303, loc);
   res.send()
   return;
 }
@@ -73,9 +73,7 @@ function routerWrapper(hiddenPrefix) {
       }
       return;
 
-    }
-
-    if (realPath === '/permalink') {
+    } else if (realPath === '/permalink') {
 
       if (req.query.si) {
         redirect_url = Buffer.from(req.query.si, "base64").toString();
