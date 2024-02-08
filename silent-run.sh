@@ -11,11 +11,11 @@ if [ $? -ne 0 ]; then
 fi
 
 if [ ! -f ".keep_changes" ]; then
-  git fetch -all
+  git fetch --all
   if [ -f ".use_dev" ]; then
-    git reset origin/dev
+    git reset origin/dev --hard
   else
-    git reset origin/main
+    git reset origin/main --hard
   fi
 fi
 

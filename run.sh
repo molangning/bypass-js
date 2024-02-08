@@ -76,6 +76,15 @@ if [ ! -f ".setup_done" ]; then
   touch .setup_done
 fi
 
+if [ ! -f ".keep_changes" ]; then
+  git fetch --all
+  if [ -f ".use_dev" ]; then
+    git reset origin/dev --hard
+  else
+    git reset origin/main --hard
+  fi
+fi
+
 npm install uuid compression cookie-parser node-fetch express moment-timezone --save
 git pull
 node app.js
