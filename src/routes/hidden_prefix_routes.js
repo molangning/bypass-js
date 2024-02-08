@@ -14,7 +14,7 @@ function return404(res) {
 
 function redirect(res, loc) {
   res.set('Cache-Control', 'max-age=0')
-  res.redirect(303, loc);
+  res.redirect(308, loc);
   res.send()
   return;
 }
