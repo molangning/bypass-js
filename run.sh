@@ -66,8 +66,23 @@ if [ ! -f ".setup_done" ]; then
   if confirm "Do you want to use the development branch?" n; then
     git pull
     git checkout dev
+    touch .use_dev
   fi
+  
+  if confirm "Do you want to keep local changes?" n; then
+    touch .keep_changes
+  fi
+  
   touch .setup_done
+fi
+
+if [ ! -f ".keep_changes" ]; then
+  git fetch --all
+  if [ -f ".use_dev" ]; then
+    git reset origin/dev --hard
+  else
+    git reset origin/main --hard
+  fi
 fi
 
 npm install uuid compression cookie-parser node-fetch express moment-timezone --save
