@@ -22,7 +22,19 @@ app.use(require(`${process.cwd()}/src/routes/routes.js`));
 
 app.use(require(`${process.cwd()}/src/routes/hidden_prefix_routes.js`).routerWrapper(config[0]));
 
+listeningAddress = `http://0.0.0.0:${port}`
+
+// Noob friendly logging
+
+if ("REPLIT_DEV_DOMAIN" in process.env) {
+  listeningAddress = `https://${process.env.REPLIT_DEV_DOMAIN}`
+}
+
+if ("PROJECT_NAME" in process.env) {
+  listeningAddress = `https://${process.env.PROJECT_NAME}.glitch.me`
+}
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
-  console.log(`Bypass hosted on /${hiddenPrefix}`);
+  console.log(`Bypass hosted on ${listeningAddress}/${hiddenPrefix}`);
 })
