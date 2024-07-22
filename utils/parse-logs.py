@@ -84,15 +84,6 @@ print("=" * 50)
 print(f"Total users: {len(users)}")
 print("=" * 50)
 
-print("Top 50 urls")
-print("=" * 50)
-for i in sites[:50]:
-    print(f"{i[0]}: {i[1]}")
-
-print("=" * 50)
-print(f"Total urls: {len(sites)}")
-print("=" * 50)
-
 print("Top 50 domains")
 print("=" * 50)
 for i in domains[:50]:
@@ -107,4 +98,12 @@ print("=" * 50)
 for i in tz[:50]:
     print(f"{i[0]}: {i[1]}")
 
+print("=" * 50)
+print("Top 50 urls")
+print("=" * 50)
+for i in sites[:50]:
+    print(f"{i[0]}: {i[1]}")
+
+print("=" * 50)
+print(f"Total urls: {len(sites)}")
 print("=" * 50)
