@@ -1,6 +1,6 @@
 const uuid = require("uuid");
 const moment = require("moment-timezone");
-const fs = require("node:fs");
+const fs = require("fs");
 
 if (!fs.existsSync("src/reset.html")) {
 	throw new Error("Unable to find reset.html");

@@ -1,5 +1,5 @@
-const fs = require("node:fs");
-const path = require("node:path");
+const fs = require("fs");
+const path = require("path");
 
 function parseConfig() {
 	const randomPrefix = Math.random().toString(36).substring(2);

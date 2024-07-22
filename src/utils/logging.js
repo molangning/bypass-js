@@ -1,4 +1,4 @@
-const fs = require("node:fs");
+const fs = require("fs");
 const moment = require("moment-timezone");
 
 function log(uuid, tz, path, type) {

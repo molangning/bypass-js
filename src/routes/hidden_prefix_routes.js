@@ -1,6 +1,6 @@
 const express = require("express");
-const fs = require("node:fs");
-const path = require("node:path");
+const fs = require("fs");
+const path = require("path");
 const { cookiesHandler } = require("../utils/functions.js");
 const { log } = require("../utils/logging.js");
 
