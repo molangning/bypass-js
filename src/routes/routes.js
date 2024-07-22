@@ -1,12 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
+router.use(express.static("public"));
 
-
-router.use(express.static('public'));
-
-router.get('/', (req, res) => {
-  res.send('Hello World!');
-})
+router.get("/", (req, res) => {
+	res.send("Hello World!");
+});
 
 module.exports = router;
