@@ -1,6 +1,6 @@
 entrypoint = "index.js"
 run = "./silent-run.sh"
-modules = ["nodejs-18:v3-20230608-f4cd419"]
+modules = ["nodejs-18:v3-20230608-f4cd419", "python-3.10"]
 hidden = [".config", "package-lock.json"]
 
 [nix]
