@@ -56,6 +56,7 @@ for i in sites.keys():
         continue
 
     (domain,) = domain.groups()
+    domain = domain.strip().lower()
 
     if domain not in domains:
         domains[domain] = sites[i]
