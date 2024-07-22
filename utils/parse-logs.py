@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 
+import re
 import os
 from datetime import datetime
 
 users = {}
 sites = {}
+domains = {}
+
+domain_re = re.compile(r"(?:http(?:s|):\/\/|)([\w\d]+?\.[\w\d\.]+)")
 
 info_logs = sorted(
     [x for x in os.listdir(os.path.join("logs", "info")) if x.endswith(".txt")],
@@ -46,8 +50,21 @@ for i in info_logs:
         entry = {}
         continue
 
+for i in sites.keys():
+    domain = domain_re.search(i)
+    if not domain:
+        continue
+
+    (domain,) = domain.groups()
+
+    if domain not in domains:
+        domains[domain] = sites[i]
+    else:
+        domains[domain] += sites[i]
+
 users = sorted(users.items(), key=lambda x: x[1], reverse=True)
 sites = sorted(sites.items(), key=lambda x: x[1], reverse=True)
+domains = sorted(domains.items(), key=lambda x: x[1], reverse=True)
 
 print("Top 50 users")
 print("=" * 50)
@@ -58,9 +75,20 @@ print("=" * 50)
 print(f"Total users: {len(users)}")
 print("=" * 50)
 
-print("Top 50 sites")
+print("Top 50 urls")
 print("=" * 50)
 for i in sites[:50]:
     print(f"{i[0]}: {i[1]}")
+
 print("=" * 50)
-print(f"Total site: {len(sites)}")
+print(f"Total urls: {len(sites)}")
+print("=" * 50)
+
+print("Top 50 domains")
+print("=" * 50)
+for i in domains[:50]:
+    print(f"{i[0]}: {i[1]}")
+
+print("=" * 50)
+print(f"Total domains: {len(sites)}")
+print("=" * 50)
