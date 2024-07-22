@@ -9,47 +9,47 @@ function confirm() {
   default="Y"
   q_string="[Y/n]"
 
-  case "$2" in 
-  
-    no)
-      default="n"
-      q_string="[y/N]"
-      ;;
+  case "$2" in
 
-    *)
-      default="y"
-      q_string="[Y/n]"
-      ;;
+  no)
+    default="n"
+    q_string="[y/N]"
+    ;;
+
+  *)
+    default="y"
+    q_string="[Y/n]"
+    ;;
   esac
 
   #change prompt
   read -r -p "$1 $q_string: " response
   case "$response" in
-  
-    "")
-      if [$default == "y"]; then
-        true
-      else
-        false
-      fi
-      ;;
-      
-    [yY][eE][sS]|[yY]) 
+
+  "")
+    if [ $default == "y" ]; then
       true
-      ;;
-          
-    [nN][oO]|[nN])
+    else
       false
-      ;;
-      
-    *)
-      false
-      ;;
+    fi
+    ;;
+
+  [yY][eE][sS] | [yY])
+    true
+    ;;
+
+  [nN][oO] | [nN])
+    false
+    ;;
+
+  *)
+    false
+    ;;
   esac
 
 }
 
-git ls-remote -q > /dev/null 2>&1
+git ls-remote -q >/dev/null 2>&1
 
 # this helped me save so much time
 # https://stackoverflow.com/a/18999726
@@ -61,18 +61,17 @@ if [ $? -ne 0 ]; then
   git checkout -t origin/main
 fi
 
-
 if [ ! -f ".setup_done" ]; then
   if confirm "Do you want to use the development branch?" n; then
     git pull
     git checkout dev
     touch .use_dev
   fi
-  
+
   if confirm "Do you want to keep local changes?" n; then
     touch .keep_changes
   fi
-  
+
   touch .setup_done
 fi
 
@@ -88,6 +87,3 @@ fi
 npm install uuid compression cookie-parser node-fetch express moment-timezone --save
 git pull
 node app.js
-
-
-  
