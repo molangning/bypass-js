@@ -1,6 +1,5 @@
 function newTab() {
-	const re =
-		/[-a-zA-Z0-9:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}([-a-zA-Z0-9()!@:%_+.~#?&//=]*)"/;
+	const re = /(?:http(?:s|):\/\/|)([\w\d]+?\.[\w\d\.]+)/;
 	let link = document.getElementById("link").value;
 	if (re.test(link)) {
 		if (
