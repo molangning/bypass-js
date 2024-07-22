@@ -7,6 +7,7 @@ from datetime import datetime
 users = {}
 sites = {}
 domains = {}
+tz = {}
 
 domain_re = re.compile(r"(?:http(?:s|):\/\/|)([\w\d]+?\.[\w\d\.]+)")
 
@@ -47,6 +48,12 @@ for i in info_logs:
             else:
                 sites[entry["path"]] += 1
 
+        if "tz" in entry:
+            if entry["tz"] not in tz:
+                tz[entry["tz"]] = 1
+            else:
+                tz[entry["tz"]] += 1
+
         entry = {}
         continue
 
@@ -66,6 +73,7 @@ for i in sites.keys():
 users = sorted(users.items(), key=lambda x: x[1], reverse=True)
 sites = sorted(sites.items(), key=lambda x: x[1], reverse=True)
 domains = sorted(domains.items(), key=lambda x: x[1], reverse=True)
+tz = sorted(tz.items(), key=lambda x: x[1], reverse=True)
 
 print("Top 50 users")
 print("=" * 50)
@@ -76,15 +84,6 @@ print("=" * 50)
 print(f"Total users: {len(users)}")
 print("=" * 50)
 
-print("Top 50 urls")
-print("=" * 50)
-for i in sites[:50]:
-    print(f"{i[0]}: {i[1]}")
-
-print("=" * 50)
-print(f"Total urls: {len(sites)}")
-print("=" * 50)
-
 print("Top 50 domains")
 print("=" * 50)
 for i in domains[:50]:
@@ -92,4 +91,19 @@ for i in domains[:50]:
 
 print("=" * 50)
 print(f"Total domains: {len(sites)}")
+print("=" * 50)
+
+print("Top 50 user timezones")
+print("=" * 50)
+for i in tz[:50]:
+    print(f"{i[0]}: {i[1]}")
+
+print("=" * 50)
+print("Top 50 urls")
+print("=" * 50)
+for i in sites[:50]:
+    print(f"{i[0]}: {i[1]}")
+
+print("=" * 50)
+print(f"Total urls: {len(sites)}")
 print("=" * 50)
