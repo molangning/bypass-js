@@ -49,18 +49,18 @@ for i in info_logs:
 users = sorted(users.items(), key=lambda x: x[1], reverse=True)
 sites = sorted(sites.items(), key=lambda x: x[1], reverse=True)
 
-print("Top users")
+print("Top 50 users")
 print("=" * 50)
-for i in users:
+for i in users[:50]:
     print(f"{i[0]}: {i[1]}")
 
 print("=" * 50)
 print(f"Total users: {len(users)}")
 print("=" * 50)
 
-print("Top sites")
+print("Top 50 sites")
 print("=" * 50)
-for i in sites:
+for i in sites[:50]:
     print(f"{i[0]}: {i[1]}")
 print("=" * 50)
 print(f"Total site: {len(sites)}")
