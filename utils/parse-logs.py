@@ -31,15 +31,17 @@ for i in info_logs:
 
             continue
 
-        if entry["uuid"] not in users:
-            users[entry["uuid"]] = 1
-        else:
-            users[entry["uuid"]] += 1
+        if "uuid" in entry:
+            if entry["uuid"] not in users:
+                users[entry["uuid"]] = 1
+            else:
+                users[entry["uuid"]] += 1
 
-        if entry["path"] not in sites:
-            sites[entry["path"]] = 1
-        else:
-            sites[entry["path"]] += 1
+        if "path" in entry:
+            if entry["path"] not in sites:
+                sites[entry["path"]] = 1
+            else:
+                sites[entry["path"]] += 1
 
         entry = {}
         continue
