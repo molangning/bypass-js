@@ -9,7 +9,7 @@ sites = {}
 domains = {}
 tz = {}
 
-domain_re = re.compile(r"(?:http(?:s|):\/\/|)([\w\d]+?\.[\w\d\.]+)")
+domain_re = re.compile(r"(?:http(?:s|):\/\/|)([\w\d-]+?\.[\w\d\.-]+)")
 
 info_logs = sorted(
     [x for x in os.listdir(os.path.join("logs", "info")) if x.endswith(".txt")],
